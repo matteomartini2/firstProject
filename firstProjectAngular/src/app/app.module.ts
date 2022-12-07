@@ -10,6 +10,20 @@ import { HomeComponent } from './home/home.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+
+
+const MATERIAL_MODULE = [
+  MatSlideToggleModule,
+  MatButtonModule,
+   MatCardModule,
+   MatToolbarModule,
+   MatIconModule,
+   MatTableModule,
+   MatInputModule
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +32,8 @@ import {MatIconModule} from '@angular/material/icon';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatSlideToggleModule,MatButtonModule, BrowserAnimationsModule,MatCardModule,MatToolbarModule,MatIconModule
+    BrowserAnimationsModule,
+    MATERIAL_MODULE
   ],
   providers: [],
   bootstrap: [AppComponent]
