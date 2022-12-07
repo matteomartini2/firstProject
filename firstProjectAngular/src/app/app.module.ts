@@ -7,6 +7,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatButtonModule} from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
+import { MatInputModule } from '@angular/material/input';
+const MATERIAL_MODULE = [
+  MatInputModule
+];
 
 @NgModule({
   declarations: [
@@ -16,7 +20,8 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatSlideToggleModule,MatButtonModule, BrowserAnimationsModule
+    MatSlideToggleModule,MatButtonModule, BrowserAnimationsModule,
+    MATERIAL_MODULE
   ],
   providers: [],
   bootstrap: [AppComponent]
