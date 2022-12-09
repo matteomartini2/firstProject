@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   dataSource: MatTableDataSource<project>;
   project: project[]
   i: number = 1;
-  
+
 
   displayedColumns: string[] = ['nome', 'stato', 'tipoAttivita', 'businessUnit', 'cliente', 'dataInizio', 'dataFine', 'ACTION'];
 
@@ -86,6 +86,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.project);
+
+    console.log("project",this.dataSource.data);
   }
 
   ngAfterViewInit() {
@@ -101,14 +103,12 @@ export class HomeComponent implements OnInit {
 
   }
 
-  deleteProject(projectD : project){
-    const INDEX = this.project.findIndex(e => e.id === projectD.id);
-    if(INDEX!=1)
-    this.project.splice(INDEX,1);
-    console.log("Index ",INDEX);
-    console.log(this.i);
-    console.log("Index Para",projectD.id);
-    this.project=[...this.project];
-    console.log("entro delete");
+  deleteProject(projectId){
+    const INDEX = this.project.findIndex(e =>{
+      e.id === projectId
+      console.log("e.id",e.id);
+    } );
+    this.dataSource.data.splice(INDEX,1);
+    this.dataSource.data=[...this.dataSource.data];
   }
 }
