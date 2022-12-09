@@ -1,7 +1,8 @@
 import { MatTableDataSource } from '@angular/material/table';
 import { project } from './../model/project';
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-home',
@@ -9,20 +10,27 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   dataSource: MatTableDataSource<project>;
-  project: project[]
+  project: project[];
   i: number = 1;
 
+  displayedColumns: string[] = [
+    'nome',
+    'stato',
+    'tipoAttivita',
+    'businessUnit',
+    'cliente',
+    'dataInizio',
+    'dataFine',
+    'ACTION',
+  ];
 
-  displayedColumns: string[] = ['nome', 'stato', 'tipoAttivita', 'businessUnit', 'cliente', 'dataInizio', 'dataFine', 'ACTION'];
-
-  constructor() {
+  constructor(public dialog: MatDialog) {
     this.project = [
       {
-        id : this.projectID(),
+        id: this.projectID(),
         nome: 'Agile project figo',
         stato: 'Prospect',
         tipoAttivita: 'TM',
@@ -69,7 +77,7 @@ export class HomeComponent implements OnInit {
         businessUnit: 'Loremipsum',
         cliente: 'Qualcosaltro',
         dataInizio: new Date('2022-06-09'),
-        dataFine: new Date('2022-10-25')
+        dataFine: new Date('2022-10-25'),
       },
       {
         id: this.projectID(),
@@ -87,28 +95,39 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.project);
 
-    console.log("project",this.dataSource.data);
+    console.log('project', this.dataSource.data);
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
-  projectID() : number{
-    this.i ++;
+  projectID(): number {
+    this.i++;
     return this.i;
   }
 
-  editProject(projectE : project){
+  editProject(projectE: project) {}
 
+  deleteProject(projectId) {
+    const INDEX = this.project.findIndex((e) => {
+      e.id === projectId;
+    });
+    this.dataSource.data.splice(INDEX, 1);
+    this.dataSource.data = [...this.dataSource.data];
   }
 
-  deleteProject(projectId){
-    const INDEX = this.project.findIndex(e =>{
-      e.id === projectId
-      console.log("e.id",e.id);
-    } );
-    this.dataSource.data.splice(INDEX,1);
-    this.dataSource.data=[...this.dataSource.data];
+  openDialog(): void {
+    this.dialog.open(DialogComponent, {
+      width: '250px'
+    });
   }
+}
+
+@Component({
+  selector: 'app-dialog',
+  templateUrl: '../shared/components/dialog/dialog.component.html',
+})
+export class DialogComponent {
+  constructor(public dialogRef: MatDialogRef<DialogComponent>) {}
 }
