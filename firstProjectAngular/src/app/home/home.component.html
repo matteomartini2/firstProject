@@ -1,64 +1,82 @@
 <div class="container-fluid">
-
-<div class="row">
+  <div class="row">
     <div class="col">
-        <mat-card>
-           
-            <div class="row">
-                <div class="col ">
-                    Progetti
-                </div>
-            </div>
+      <mat-card>
+        <div class="row">
+          <div class="col">Progetti</div>
+        </div>
 
-            <div class="row">
-                <div class="col-lg-6 col-12 d-flex align-items-center">
-                    <button mat-raised-button color="accent">Accent</button>
+        <div class="row">
+          <div class="col-lg-5 col-12 d-flex align-items-center">
+            <button mat-raised-button color="accent">Aggiungi Progetto</button>
+          </div>
+          <div class="col-lg-7 col-12 d-flex">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <input matInput placeholder="Search">
+              <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
 
-                </div>
-                <div class="col-lg-6 col-12"> 
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Favorite food</mat-label>
-                        <input matInput placeholder="Ex. Pizza" value="Sushi">
-                      </mat-form-field>
-                </div>
-            </div>
+        <div class="row">
+          <div class="col">
+            <table mat-table [dataSource]="dataSource" matSort>
+              <ng-container matColumnDef="nome">
+                <th mat-header-cell *matHeaderCellDef>Nome</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.nome }}
+                </td>
+              </ng-container>
 
+              <ng-container matColumnDef="stato">
+                <th mat-header-cell *matHeaderCellDef>Stato</th>
+                <td mat-cell *matCellDef="let element">{{ element.stato }}</td>
+              </ng-container>
 
-            <div class="row">
-                <div class="col">
-                    <table mat-table [dataSource]="dataSource">
+              <ng-container matColumnDef="tipoAttivita">
+                <th mat-header-cell *matHeaderCellDef>Tipo Attività</th>
+                <td mat-cell *matCellDef="let element">{{ element.tipoAttivita }}</td>
+              </ng-container>
 
-                        <!-- Position Column -->
-                        <ng-container matColumnDef="position">
-                          <th mat-header-cell *matHeaderCellDef> No. </th>
-                          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-                        </ng-container>
-                      
-                        <!-- Name Column -->
-                        <ng-container matColumnDef="name">
-                          <th mat-header-cell *matHeaderCellDef> Name </th>
-                          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-                        </ng-container>
-                      
-                        <!-- Weight Column -->
-                        <ng-container matColumnDef="weight">
-                          <th mat-header-cell *matHeaderCellDef> Weight </th>
-                          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-                        </ng-container>
-                      
-                        <!-- Symbol Column -->
-                        <ng-container matColumnDef="symbol">
-                          <th mat-header-cell *matHeaderCellDef> Symbol </th>
-                          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-                        </ng-container>
-                      
-                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                      </table>
-                </div>
-            </div>
-        </mat-card>
+              <ng-container matColumnDef="businessUnit">
+                <th mat-header-cell *matHeaderCellDef>Business Unit</th>
+                <td mat-cell *matCellDef="let element">{{ element.businessUnit }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="cliente">
+                <th mat-header-cell *matHeaderCellDef>Cliente</th>
+                <td mat-cell *matCellDef="let element">{{ element.cliente }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="dataInizio">
+                <th mat-header-cell *matHeaderCellDef>Data Inizio</th>
+                <td mat-cell *matCellDef="let element">{{ element.dataInizio.toLocaleDateString('it-IT') }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="dataFine">
+                <th mat-header-cell *matHeaderCellDef>Data Fine</th>
+                <td mat-cell *matCellDef="let element">{{ element.dataFine.toLocaleDateString('it-IT') }}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="ACTION">
+                <th mat-header-cell *matHeaderCellDef>ACTION</th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-icon-button (click)="editProject(element)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-icon-button (click)="deleteProject(element)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+          </div>
+        </div>
+      </mat-card>
     </div>
-</div>
-
+  </div>
 </div>

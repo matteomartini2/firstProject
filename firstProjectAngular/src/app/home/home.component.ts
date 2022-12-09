@@ -1,38 +1,114 @@
-import { Component, OnInit } from '@angular/core';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+import { MatTableDataSource } from '@angular/material/table';
+import { project } from './../model/project';
+import { Component, OnInit,ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
-  constructor() { }
+  dataSource: MatTableDataSource<project>;
+  project: project[]
+  i: number = 1;
+  
 
-  ngOnInit(): void {
+  displayedColumns: string[] = ['nome', 'stato', 'tipoAttivita', 'businessUnit', 'cliente', 'dataInizio', 'dataFine', 'ACTION'];
+
+  constructor() {
+    this.project = [
+      {
+        id : this.projectID(),
+        nome: 'Agile project figo',
+        stato: 'Prospect',
+        tipoAttivita: 'TM',
+        businessUnit: 'Loremipsum',
+        cliente: 'Alma Viva',
+        dataInizio: new Date('2022-06-09'),
+        dataFine: new Date('2022-10-25'),
+      },
+      {
+        id: this.projectID(),
+        nome: 'Agile project figo',
+        stato: 'Prospect',
+        tipoAttivita: 'TM',
+        businessUnit: 'Loremipsum',
+        cliente: 'Alma Viva',
+        dataInizio: new Date('2022-06-09'),
+        dataFine: new Date('2022-10-25'),
+      },
+      {
+        id: this.projectID(),
+        nome: 'Agile project figo',
+        stato: 'Prospect',
+        tipoAttivita: 'TM',
+        businessUnit: 'Loremipsum',
+        cliente: 'Alma Viva',
+        dataInizio: new Date('2022-06-09'),
+        dataFine: new Date('2022-10-25'),
+      },
+      {
+        id: this.projectID(),
+        nome: 'Agile project figo',
+        stato: 'Prospect',
+        tipoAttivita: 'TM',
+        businessUnit: 'Loremipsum',
+        cliente: 'Alma Viva',
+        dataInizio: new Date('2022-06-09'),
+        dataFine: new Date('2022-10-25'),
+      },
+      {
+        id: this.projectID(),
+        nome: 'Agile project figo',
+        stato: 'Prospect',
+        tipoAttivita: 'TM',
+        businessUnit: 'Loremipsum',
+        cliente: 'Qualcosaltro',
+        dataInizio: new Date('2022-06-09'),
+        dataFine: new Date('2022-10-25')
+      },
+      {
+        id: this.projectID(),
+        nome: 'Agile project figo',
+        stato: 'Qualcosa',
+        tipoAttivita: 'TM',
+        businessUnit: 'Loremipsum',
+        cliente: 'Alma Viva',
+        dataInizio: new Date('2022-06-09'),
+        dataFine: new Date('2022-10-25'),
+      },
+    ];
   }
 
+  ngOnInit(): void {
+    this.dataSource = new MatTableDataSource(this.project);
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  projectID() : number{
+    this.i ++;
+    return this.i;
+  }
+
+  editProject(projectE : project){
+
+  }
+
+  deleteProject(projectD : project){
+    const INDEX = this.project.findIndex(e => e.id === projectD.id);
+    if(INDEX!=1)
+    this.project.splice(INDEX,1);
+    console.log("Index ",INDEX);
+    console.log(this.i);
+    console.log("Index Para",projectD.id);
+    this.project=[...this.project];
+    console.log("entro delete");
+  }
 }
