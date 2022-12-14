@@ -12,7 +12,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
-
+import {MatTabsModule} from '@angular/material/tabs';
+import { AnagraficaComponent } from './anagrafica/anagrafica.component';
 
 const MATERIAL_MODULE = [
   MatSlideToggleModule,
@@ -21,13 +22,16 @@ const MATERIAL_MODULE = [
    MatToolbarModule,
    MatIconModule,
    MatTableModule,
-   MatInputModule
+   MatInputModule,
+   MatTabsModule
+   
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    AnagraficaComponent
   ],
   imports: [
     BrowserModule,
