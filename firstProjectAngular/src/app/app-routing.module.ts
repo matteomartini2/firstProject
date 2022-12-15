@@ -28,7 +28,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('../app/anagrafica/anagrafica.module').then((m) => m.AnagraficaModule),
   },
-
 ];
 
 @NgModule({

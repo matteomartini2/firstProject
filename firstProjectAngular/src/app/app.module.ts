@@ -14,7 +14,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatTabsModule} from '@angular/material/tabs';
 import { AnagraficaComponent } from './anagrafica/anagrafica.component';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
 const MATERIAL_MODULE = [
   MatSlideToggleModule,
   MatButtonModule,
@@ -23,8 +23,8 @@ const MATERIAL_MODULE = [
    MatIconModule,
    MatTableModule,
    MatInputModule,
-   MatTabsModule
-   
+   MatTabsModule,
+   MatDatepickerModule
 ];
 
 @NgModule({
