@@ -1,0 +1,250 @@
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col">
+           
+            <mat-card>
+                <h2>Name Surname</h2><br><br>
+           
+                <mat-tab-group>
+                    <mat-tab label="Informazioni Personali">
+                        <div class="container-fluid">
+                       
+                            <div class="row">
+                                <div class="col">
+                                
+                                    <div class="row py-3">
+                                        <div  class="col-lg-6">
+
+                                            <div>
+                                                <h2>Personal Info</h2>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex col-lg-6 justify-content-end">
+                                            <button mat-raised-button class="coloreBottone">Modify</button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <form [formGroup]="formDelCazzo" (ngSubmit)="submit104()">
+                                <div class="row py-4">
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col">
+                                                <mat-form-field class="width-100" appearance="outline">
+                                                    <mat-label>Name</mat-label>
+                                                    <input matInput formControlName="name" required>
+                                                    <mat-icon matSuffix>apartment</mat-icon>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col">
+                                                <mat-form-field class=" width-100" appearance="outline">
+                                                    <mat-label>Surname</mat-label>
+                                                    <input matInput formControlName="surname" required>
+                                                    <mat-icon matSuffix>apartment</mat-icon>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col">
+                                                <mat-form-field class=" width-100" appearance="outline">
+                                                    <mat-label>via</mat-label>
+                                                    <input matInput formControlName="via" required>
+                                                    <mat-icon matSuffix>apartment</mat-icon>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-lg-1 col-12">
+                                                <mat-form-field class=" width-100" appearance="outline">
+                                                    <mat-label>N°</mat-label>
+                                                    <input matInput formControlName="numero" required>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-lg-1 col-12">
+                                                <mat-form-field class=" width-100" appearance="outline">
+                                                    <mat-label>CAP</mat-label>
+                                                    <input matInput formControlName="cap" required>
+                                                </mat-form-field>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row py-3">
+                                            <div class="col">
+                                                <mat-form-field class=" width-100" appearance="outline">
+                                                    <mat-label>Codice Fiscale</mat-label>
+                                                    <input matInput formControlName="codice fiscale" required>
+                                                    <mat-icon matSuffix>apartment</mat-icon>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col">
+                                                <mat-form-field class=" width-100" appearance="outline">
+                                                    <mat-label>Stato</mat-label>
+                                                    <input matInput formControlName="stato" required>
+                                                    <mat-icon matSuffix>apartment</mat-icon>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-lg-2 col-12">
+                                                
+                                                <mat-form-field class=" width-100" appearance="outline">
+                                                    <mat-label>Regione</mat-label>
+                                                    <select matNativeControl formControlName="regione" required>
+                                                        <option value="" disabled selected></option>
+                                                        <option value="volvo">Umbria</option>
+                                                        <option value="saab">Valle D'Aosta</option>
+                                                        <option value="mercedes">Friuli Venezia Giulia</option>
+                                                        <option value="audi">Toscana</option>
+                                                        <option value="volvo">Marche</option>
+                                                        <option value="saab">Molise</option>
+                                                        <option value="mercedes">Sicilia</option>
+                                                        <option value="audi">Campania</option>
+                                                        <option value="saab">Lombardia</option>
+                                                        <option value="mercedes">Piemonte</option>
+                                                        <option value="saab">Liguria</option>
+                                                        <option value="mercedes">Veneto</option>
+                                                        <option value="audi">Sardegna</option>
+                                                        <option value="saab">Emilia Romagna</option>
+                                                        <option value="mercedes">Calabria</option>
+                                                        <option value="saab">Basilicata</option>
+                                                        <option value="mercedes">Trentino Alto Adige</option>
+                                                        <option value="audi">Lazio</option>
+                                                        <option value="saab">Puglia</option>
+                                                        <option value="mercedes">Abruzzo</option>
+                                                        
+                                                      </select>
+                                                    
+                                                    <mat-icon matSuffix>apartment</mat-icon>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-lg-2 col-12">
+                                                <mat-form-field class=" width-100" appearance="outline">
+                                                    <mat-label>City</mat-label>
+                                                    <input matInput formControlName="city" required>
+                                                    <mat-icon matSuffix>apartment</mat-icon>
+                                                </mat-form-field>
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="row py-3">
+                                            <div class="col">
+                                                <mat-form-field class=" width-100" appearance="outline">
+                                                    <mat-label>Email</mat-label>
+                                                    <input matInput formControlName="email" required>
+                                                    <mat-icon matSuffix>apartment</mat-icon>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col">
+                                                <mat-form-field class=" width-100" appearance="outline">
+                                                    <mat-label>Numero Telefonico</mat-label>
+                                                    <input matInput formControlName="numero telefonico" required>
+                                                    <mat-icon matSuffix>apartment</mat-icon>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-lg-2 col-12">
+                                                <mat-form-field class=" width-100" appearance="outline">
+                                                    <mat-label>Numero Fisso</mat-label>
+                                                    <input matInput formControlName="numero fisso" required>
+                                                    <mat-icon matSuffix>apartment</mat-icon>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-lg-2 col-12">
+                                                <mat-form-field class=" width-100" appearance="outline">
+                                                    <mat-label>sesso</mat-label>
+                                                    
+                                                  
+                                                   
+                                                        <mat-select matNativeControl formControlName="sesso" required>
+                                                            <mat-option value="sesso" disabled selected></mat-option>
+                                                          <mat-option value="1">Maschio</mat-option>
+                                                          <mat-option value="2">Femmina</mat-option>
+                                                        </mat-select>
+                                                     
+                                                    <mat-icon matSuffix>apartment</mat-icon>
+                                                </mat-form-field>
+                                            </div>
+
+
+                                        </div>
+
+                                        <div class="row py-3">
+                                            <div class="col-lg-6 col-12">
+                                                <mat-form-field class=" width-100" appearance="outline">
+                                                    <mat-label>Password</mat-label>
+                                                    <input matInput type="password" formControlName="password" required>
+                                                    <mat-icon matSuffix>apartment</mat-icon>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <mat-form-field class=" width-100" appearance="outline">
+                                                    <mat-label>Note</mat-label>
+                                                    <textarea rows="9" matInput formControlName="note"
+                                                        required></textarea>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 d-flex justify-content-end">
+                                    <button mat-raised-button color="primary" type="submit" [disabled]=" formDelCazzo.invalid">
+                                        Salva
+                                        <mat-icon>save</mat-icon>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </mat-tab>
+
+                    <mat-tab label="Competenze e Certificati">
+                        <div class="container-fluid">
+                            <div class="row py-3">
+                                <div class="col-lg-6">
+
+                                    <div>
+                                        <h2>Competenze</h2>
+                                    </div>
+                                </div>
+                                <div class="d-flex col-lg-6 justify-content-end">
+                                    <button mat-raised-button class="coloreBottone">Modify</button>
+                                </div>
+                            </div>
+
+
+                            <div class="row py-3">
+                                <div class="col-lg-6 col-12">
+                                    <mat-label>COMPETENZE PRINCIPALI</mat-label>
+                                    <mat-form-field class=" width-100" appearance="outline">
+                                        <mat-label>Note</mat-label>
+                                        <textarea rows="9" matInput></textarea>
+
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-lg-6 col-12">
+                                    <mat-label>KEYSKILS</mat-label>
+                                    <mat-form-field class=" width-100" appearance="outline">
+                                        <mat-label>Note</mat-label>
+                                        <textarea rows="10" matInput></textarea>
+
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+                            <div class="row py-3">
+                                <div class="col-lg-6 col-12">
+                                    <mat-label>CERTIFICATI</mat-label>
+                                    <mat-form-field class=" width-100" appearance="outline">
+                                        <mat-label>Note</mat-label>
+                                        <textarea rows="14" matInput></textarea>
+
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-tab>
+
+                </mat-tab-group>
+            </mat-card>
+        </div>
+    </div>
+
+</div>

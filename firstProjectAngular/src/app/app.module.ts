@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,7 +13,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
-
+import { PersonalProfileComponent } from './personal-profile/personal-profile.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSelectModule} from '@angular/material/select';
+import { MatOptionModule } from '@angular/material/core';
 
 const MATERIAL_MODULE = [
   MatSlideToggleModule,
@@ -21,13 +25,19 @@ const MATERIAL_MODULE = [
    MatToolbarModule,
    MatIconModule,
    MatTableModule,
-   MatInputModule
+   MatInputModule,
+   MatTabsModule,
+   FormsModule, 
+   ReactiveFormsModule,
+   MatOptionModule,
+   MatSelectModule
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    PersonalProfileComponent
   ],
   imports: [
     BrowserModule,

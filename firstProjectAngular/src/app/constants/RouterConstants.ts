@@ -3,6 +3,8 @@
 //è IL PATH CHE VEDETE QUANDO CAMBIATE PAGINA(NELL'URL)
 export const RouteConstants = {
   HOME: "home",
+  PERSONAL_PROFILE: "personal-profile",
 };
+
 
 
