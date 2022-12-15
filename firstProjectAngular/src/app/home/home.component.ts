@@ -3,6 +3,7 @@ import { project } from './../model/project';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ModalDynamicComponent } from '../shared/components/modal-dynamic/modal-dynamic.component';
 
 @Component({
   selector: 'app-home',
@@ -12,9 +13,10 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 export class HomeComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  dataSource: MatTableDataSource<project>;
+  dataSource: any;
   project: project[];
-  i: number = 1;
+  i: number = -1;
+  searchProject : string = '';
 
   displayedColumns: string[] = [
     'nome',
@@ -30,7 +32,17 @@ export class HomeComponent implements OnInit {
   constructor(public dialog: MatDialog) {
     this.project = [
       {
-        id: this.projectID(),
+        id: this.returnID(),
+        nome: 'numero 1',
+        stato: 'Prospect',
+        tipoAttivita: 'TM',
+        businessUnit: 'Loremipsum',
+        cliente: 'Alma Viva',
+        dataInizio: new Date('2022-06-09'),
+        dataFine: new Date('2022-10-25'),
+      },
+      {
+        id: this.returnID(),
         nome: 'Agile project figo',
         stato: 'Prospect',
         tipoAttivita: 'TM',
@@ -40,7 +52,7 @@ export class HomeComponent implements OnInit {
         dataFine: new Date('2022-10-25'),
       },
       {
-        id: this.projectID(),
+        id: this.returnID(),
         nome: 'Agile project figo',
         stato: 'Prospect',
         tipoAttivita: 'TM',
@@ -50,7 +62,7 @@ export class HomeComponent implements OnInit {
         dataFine: new Date('2022-10-25'),
       },
       {
-        id: this.projectID(),
+        id: this.returnID(),
         nome: 'Agile project figo',
         stato: 'Prospect',
         tipoAttivita: 'TM',
@@ -60,17 +72,7 @@ export class HomeComponent implements OnInit {
         dataFine: new Date('2022-10-25'),
       },
       {
-        id: this.projectID(),
-        nome: 'Agile project figo',
-        stato: 'Prospect',
-        tipoAttivita: 'TM',
-        businessUnit: 'Loremipsum',
-        cliente: 'Alma Viva',
-        dataInizio: new Date('2022-06-09'),
-        dataFine: new Date('2022-10-25'),
-      },
-      {
-        id: this.projectID(),
+        id: this.returnID(),
         nome: 'Agile project figo',
         stato: 'Prospect',
         tipoAttivita: 'TM',
@@ -80,7 +82,7 @@ export class HomeComponent implements OnInit {
         dataFine: new Date('2022-10-25'),
       },
       {
-        id: this.projectID(),
+        id: this.returnID(),
         nome: 'Agile project figo',
         stato: 'Qualcosa',
         tipoAttivita: 'TM',
@@ -89,45 +91,60 @@ export class HomeComponent implements OnInit {
         dataInizio: new Date('2022-06-09'),
         dataFine: new Date('2022-10-25'),
       },
+      {
+        id: this.returnID(),
+        nome: 'Proa matteo',
+        stato: 'Non disponibile',
+        tipoAttivita: 'TM',
+        businessUnit: 'Loremipsum',
+        cliente: 'Dst',
+        dataInizio: new Date('2022-06-09'),
+        dataFine: new Date('2022-10-25'),
+      },
     ];
   }
 
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource(this.project);
-
-    console.log('project', this.dataSource.data);
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
-  projectID(): number {
+  returnID(): number {
     this.i++;
     return this.i;
   }
 
   editProject(projectE: project) {}
 
-  deleteProject(projectId) {
-    const INDEX = this.project.findIndex((e) => {
-      e.id === projectId;
-    });
-    this.dataSource.data.splice(INDEX, 1);
+  deleteProject(projectId : number) {
+    const INDEX = this.dataSource.data.findIndex((e) => e.id === projectId);
+    if(INDEX !== -1)
+      this.dataSource.data.splice(INDEX, 1);
+    console.log('Indice eliminato : ', INDEX);
     this.dataSource.data = [...this.dataSource.data];
   }
 
-  openDialog(): void {
-    this.dialog.open(DialogComponent, {
-      width: '250px'
+  dialogDelete(element) {
+    console.log('element', element);
+    let dialogRef = this.dialog.open(ModalDynamicComponent, {
+      data: { element, type: 'delete', mammt : "sort" }, //far passare più cose
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        console.log('Sono nelle info');
+        this.deleteProject(element.id);
+      } else {
+        console.log('Hai chiuso la modale');
+      }
     });
   }
-}
 
-@Component({
-  selector: 'app-dialog',
-  templateUrl: '../shared/components/dialog/dialog.component.html',
-})
-export class DialogComponent {
-  constructor(public dialogRef: MatDialogRef<DialogComponent>) {}
+  searchInput(event) {
+    this.searchProject = event;
+  }
+
 }

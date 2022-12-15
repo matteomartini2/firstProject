@@ -1,0 +1,24 @@
+table{
+    width: 100%;
+}
+
+.padding-20-px{
+    padding-left: 20px;
+}
+
+.add-button{
+    background-color: rgba($color: #e0afee, $alpha: 1.0);
+    color: white;
+}
+
+.purple{
+    color: rgba($color: #e0afee, $alpha: 1.0);
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.red{
+    color:rgba($color: #e63636, $alpha: 1.0)
+}

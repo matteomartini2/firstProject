@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,9 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModalDynamicComponent } from './shared/components/modal-dynamic/modal-dynamic.component';
+import { SearchPipe } from './shared/components/search/search.pipe';
 
 
 const MATERIAL_MODULE = [
@@ -23,19 +27,23 @@ const MATERIAL_MODULE = [
   MatIconModule,
   MatTableModule,
   MatInputModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatDialogModule
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ModalDynamicComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MATERIAL_MODULE
+    MATERIAL_MODULE,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,71 +1,93 @@
-<div class="container-fluid">
+<div class="container-fluid shadow p-3 mb-5 bg-body rounded">
   <div class="row">
     <div class="col">
-      <mat-card>
+      <mat-card class="shadow p-3 mb-5 bg-body rounded border border-1">
         <div class="row">
-          <div class="col">Progetti</div>
+          <div class="col-12">
+            <h2>Progetti</h2>
+          </div>
         </div>
 
-        <div class="row">
-          <div class="col-lg-5 col-12 d-flex align-items-center">
-            <button mat-raised-button color="accent">Aggiungi Progetto</button>
+        <div class="row padding-20-px">
+          <div class="col-lg-5 col-sm-6 col-12 d-flex align-items-center">
+            <button mat-raised-button class="custom-btn btn-16">
+              Aggiungi Progetto
+            </button>
           </div>
-          <div class="col-lg-7 col-12 d-flex">
+          <div class="col-lg-7 col-sm-6 col-12">
             <mat-form-field class="example-full-width" appearance="outline">
-              <input matInput placeholder="Search">
-              <mat-icon matSuffix>search</mat-icon>
+              <input
+                matInput
+                type="text"
+                placeholder="Search"
+                [(ngModel)]="searchProject"
+                (ngModelChange)="searchInput(searchProject)"
+              />
+              <mat-icon class="color" matSuffix>search</mat-icon>
             </mat-form-field>
           </div>
         </div>
 
         <div class="row">
-          <div class="col">
-            <table mat-table [dataSource]="dataSource" matSort>
+          <div class="col-12">
+            <table mat-table [dataSource]="dataSource | filterProject  : searchProject" matSort>
               <ng-container matColumnDef="nome">
                 <th mat-header-cell *matHeaderCellDef>Nome</th>
                 <td mat-cell *matCellDef="let element">
-                  {{ element.nome }}
+                  {{ element.nome}}
                 </td>
               </ng-container>
 
               <ng-container matColumnDef="stato">
                 <th mat-header-cell *matHeaderCellDef>Stato</th>
-                <td mat-cell *matCellDef="let element">{{ element.stato }}</td>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.stato }}
+                </td>
               </ng-container>
 
               <ng-container matColumnDef="tipoAttivita">
                 <th mat-header-cell *matHeaderCellDef>Tipo Attività</th>
-                <td mat-cell *matCellDef="let element">{{ element.tipoAttivita }}</td>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.tipoAttivita }}
+                </td>
               </ng-container>
 
               <ng-container matColumnDef="businessUnit">
                 <th mat-header-cell *matHeaderCellDef>Business Unit</th>
-                <td mat-cell *matCellDef="let element">{{ element.businessUnit }}</td>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.businessUnit }}
+                </td>
               </ng-container>
 
               <ng-container matColumnDef="cliente">
                 <th mat-header-cell *matHeaderCellDef>Cliente</th>
-                <td mat-cell *matCellDef="let element">{{ element.cliente }}</td>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.cliente }}
+                </td>
               </ng-container>
 
               <ng-container matColumnDef="dataInizio">
                 <th mat-header-cell *matHeaderCellDef>Data Inizio</th>
-                <td mat-cell *matCellDef="let element">{{ element.dataInizio.toLocaleDateString('it-IT') }}</td>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.dataInizio.toLocaleDateString("it-IT") }}
+                </td>
               </ng-container>
 
               <ng-container matColumnDef="dataFine">
                 <th mat-header-cell *matHeaderCellDef>Data Fine</th>
-                <td mat-cell *matCellDef="let element">{{ element.dataFine.toLocaleDateString('it-IT') }}</td>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.dataFine.toLocaleDateString("it-IT") }}
+                </td>
               </ng-container>
 
               <ng-container matColumnDef="ACTION">
                 <th mat-header-cell *matHeaderCellDef>ACTION</th>
                 <td mat-cell *matCellDef="let element">
                   <button mat-icon-button (click)="editProject(element)">
-                    <mat-icon>edit</mat-icon>
+                    <mat-icon class="color">edit</mat-icon>
                   </button>
-                  <button mat-icon-button (click)="openDialog()">
-                    <mat-icon>delete</mat-icon>
+                  <button mat-icon-button (click)="dialogDelete(element)">
+                    <mat-icon class="red">delete</mat-icon>
                   </button>
                 </td>
               </ng-container>
@@ -73,9 +95,14 @@
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
             </table>
-            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
           </div>
         </div>
+        <br>
+        <mat-paginator
+        class="d-flex justify-content-start"
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+      ></mat-paginator>
       </mat-card>
     </div>
   </div>

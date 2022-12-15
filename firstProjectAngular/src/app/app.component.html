@@ -1,8 +1,15 @@
-<p>
-    <mat-toolbar>
-        <span>
-        </span>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon"></button>
+<div class="row">
+  <div class="col-12">
+    <mat-toolbar class="b-color">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span>Qualcosa</span>
+      <span class="example-spacer"></span>
+        <span class="p-3" class="pointed"><mat-icon>home</mat-icon></span>
+        <span class="p-3" class="pointed color"><mat-icon>share</mat-icon></span>
     </mat-toolbar>
-</p>
+  </div>
+</div>
+
 <router-outlet></router-outlet>
